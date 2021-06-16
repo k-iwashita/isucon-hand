@@ -47,7 +47,6 @@ class App < Sinatra::Base
     end
 
     def get_reservations(schedule)
-      #N+1クエリ
       # reservations = db.xquery('SELECT * FROM `reservations` WHERE `schedule_id` = ?', schedule[:id]).map do |reservation|
       reservations = db.xquery(
         (
@@ -71,10 +70,10 @@ class App < Sinatra::Base
         reservation[:user] = user
         reservation
       end
-
       schedule[:reservations] = reservations
       schedule[:reserved] = reservations.size
     end
+
 
     def get_reservations_count(schedule)
       # reservations = db.xquery('SELECT * FROM `reservations` WHERE `schedule_id` = ?', schedule[:id])
